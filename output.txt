@@ -1,0 +1,66 @@
+Processing captured image...
+
+” 1 pork yeoman ty Be + eee nag Oo
+
+sees gt Grd arpa Magan ein reset of (hee oiling coset one shy
+
+Sgr iil -tggteee ao vanyeneabicer tine <eteenetnetetemg”
+ord Lie eae
+
+msi eerenaiig aanggeas. TW senth wn 0 mum Ww
+
+setbete a oonp-atige bf gamrnet ce grin Mat ~ . a -.
+
+. 4 organ jeergpmnrepitemt Kap miiiemnh, + etnehegenmny
+
++ herttne
+
+nee ie, Pie puta eamge Gn kote.
+
+Lene UM & eRe ane ene of temnnelie
+Ho strabers, a Mmrirllam, QOU athena "4
+
+(Yaseen of 5 emerteite
+
+Te a |
+
+
+----------------------------------------
+Processing Complete.
+Saved to output.txt
+Saved to output.txt
+
+def capture_from_droidcam():
+    # Capture image from webcam
+    # Open webcam
+    cap = cv2.VideoCapture("http://192.168.31.19:4747/video")
+
+    if not cap.isOpened():
+        raise Exception("Webcam not accessible!")
+
+    print("Press SPACE to capture the image or ESC to exit.")
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            print("Failed to capture image.")
+            break
+
+        # Display the video feed
+        cv2.imshow("Webcam - Press SPACE to Capture", frame)
+
+        # Capture the image or exit
+        key = cv2.waitKey(1)
+        if key == 27:  # ESC to exit
+            break
+        elif key == 32:  # SPACE to capture
+            # Save captured frame
+            captured_image_path = "captured_image.jpg"
+            cv2.imwrite(captured_image_path, frame)
+            print(f"Image saved to {captured_image_path}.")
+            cap.release()
+            cv2.destroyAllWindows()
+            return captured_image_path
+
+    cap.release()
+    cv2.destroyAllWindows()
+    return None
